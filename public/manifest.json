@@ -2,7 +2,12 @@
   "manifest_version": 3,
   "name": "Daily Driver",
   "version": "1.0.0",
-  "permissions" : ["tabs", "storage"],
+  "permissions" : ["tabs"],
+  "icons": {
+    "16": "phoenix16.png",
+    "48": "phoenix48.png",
+    "128": "phoenix128.png"
+  },
   "action": {
     "default_popup": "popup.html",
     "default_title": "Daily Driver"
