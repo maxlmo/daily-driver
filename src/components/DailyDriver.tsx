@@ -37,8 +37,7 @@ export function DailyDriver() {
     useEventListener("keydown", onKeyDown);
 
     return (
-      <Box position='absolute' ml={2} mt={2} width={200} zIndex={9999}>
-          <Card elevation={10} sx={{px: 4, py: 2, bgcolor: '#fff'}}>
+         <Card elevation={10} sx={{px: 4, py: 2, bgcolor: '#fff'}}>
               <Typography variant="h4">Devs</Typography>
               {devs.map((d, i) => <Attendee key={i} person={d} selected={d.name === persons[index].name}/>)}
               <Typography variant="h4">UI/UX</Typography>
@@ -53,7 +52,6 @@ export function DailyDriver() {
                       setIndex(0);
                   }}>Shuffle</Button>
               </div>
-          </Card>
-      </Box>
+         </Card>
     )
 }
