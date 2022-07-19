@@ -1,10 +1,12 @@
 import React from 'react';
 import { Person } from '../model/person';
-import { Chip } from "@mui/material";
+import { Chip, Typography } from "@mui/material";
 
 export function Attendee(props: { person: Person, selected: boolean }) {
+    const height = "32px";
     if (props.selected) {
-        return <Chip sx={{width: "100%"}} color="primary" label={props.person.name}/>
+        return <Chip sx={{width: "100%", height}} color="primary"
+                     label={<Typography fontWeight={600} variant="body1">{props.person.name}</Typography>}/>
     }
-    return <p style={{...{padding: "5px"}}}>{props.person.name}</p>;
+    return <Typography sx={{height}}>{props.person.name}</Typography>;
 }
