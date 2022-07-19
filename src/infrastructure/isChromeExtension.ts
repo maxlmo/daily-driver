@@ -1,0 +1,1 @@
+export const isChromeExtension = chrome && chrome.runtime;

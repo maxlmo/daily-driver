@@ -2,6 +2,11 @@
   "manifest_version": 3,
   "name": "Daily Driver",
   "version": "1.0.0",
+  "permissions" : ["tabs", "storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Daily Driver"
+  },
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*", "<all_urls>"],
