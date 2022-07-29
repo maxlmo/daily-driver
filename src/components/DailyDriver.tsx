@@ -12,6 +12,7 @@ export function DailyDriver() {
     const devs = roleFilter(persons, "dev");
     const uxs = roleFilter(persons, "ux");
     const pos = roleFilter(persons, "po");
+    const other = roleFilter(persons, "other");
 
     const onKeyDown = (key: KeyboardEvent<HTMLImageElement>) => {
         if (!key.shiftKey) {
@@ -27,7 +28,7 @@ export function DailyDriver() {
     }
 
     const increaseIndex = () => {
-        if (index == persons.length - 2) {
+        if (index == persons.length - 1) {
             setIndex(0);
         } else {
             setIndex(index + 1);
@@ -44,7 +45,9 @@ export function DailyDriver() {
               {uxs.map((d, i) => <Attendee key={i} person={d} selected={d.name === persons[index].name}/>)}
               <Typography variant="h4">PO</Typography>
               {pos.map((d, i) => <Attendee key={i} person={d} selected={d.name === persons[index].name}/>)}
-              <div style={{display: 'flex', justifyContent: 'center', marginTop: "5px"}}>
+             <Typography variant="h4">Other</Typography>
+             {other.map((d, i) => <Attendee key={i} person={d} selected={d.name === persons[index].name}/>)}
+             <div style={{display: 'flex', justifyContent: 'center', marginTop: "5px"}}>
                   <Button variant="contained" onClick={increaseIndex}>Next</Button>
                   <Button style={{marginLeft: "10px"}} onClick={() => {
                       const shuffledPersons = shufflePersons(persons)
