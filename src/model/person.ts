@@ -35,6 +35,7 @@ export const all: Person[] = [
     {name: "Robert", role: "dev"},
     {name: "Thomas", role: "dev"},
     {name: "Tobi", role: "dev"},
+    {name: "Johannes M.", role: "dev"},
     {name: "Jacqueline", role: "ux"},
     {name: "Johannes", role: "ux"},
     {name: "Luise", role: "po"},
