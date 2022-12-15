@@ -1,1 +1,1 @@
-export type Role = "dev" | "ux" | "po" | "other";
+export type Role = "dev" | "ux" | "po" | "ac";

@@ -1,18 +1,19 @@
 import React, { useState, KeyboardEvent } from 'react';
 import { useEventListener } from "../hooks/globalEventListener";
-import { all, Person, shufflePersons } from '../model/person';
+import { Person, shufflePersons } from '../model/person';
 import { Role } from '../model/role';
 import { Attendee } from './Attendee';
-import { Box, Button, Card, Typography } from "@mui/material";
+import { Button, Card, Typography } from "@mui/material";
+import {useAttendees} from '../hooks/useAttendees';
 
 export function DailyDriver() {
     const [index, setIndex] = useState(0);
-    const [persons, setPersons] = useState<Person[]>(all);
+    const [attendees, setAttendees]  = useAttendees();
     const roleFilter = (persons: Person[], role: Role) => persons.filter(p => p.role === role);
-    const devs = roleFilter(persons, "dev");
-    const uxs = roleFilter(persons, "ux");
-    const pos = roleFilter(persons, "po");
-    const other = roleFilter(persons, "other");
+    const devs = roleFilter(attendees, "dev");
+    const uxs = roleFilter(attendees, "ux");
+    const pos = roleFilter(attendees, "po");
+    const acs = roleFilter(attendees, "ac");
 
     const onKeyDown = (key: KeyboardEvent<HTMLImageElement>) => {
         if (!key.shiftKey) {
@@ -28,7 +29,7 @@ export function DailyDriver() {
     }
 
     const increaseIndex = () => {
-        if (index == persons.length - 1) {
+        if (index == attendees.length - 1) {
             setIndex(0);
         } else {
             setIndex(index + 1);
@@ -40,18 +41,18 @@ export function DailyDriver() {
     return (
          <Card elevation={10} sx={{px: 4, py: 2, bgcolor: '#fff'}}>
               <Typography variant="h4">Devs</Typography>
-              {devs.map((d, i) => <Attendee key={i} person={d} selected={d.name === persons[index].name}/>)}
+              {devs.map((d, i) => <Attendee key={i} person={d} selected={d.name === attendees[index].name}/>)}
               <Typography variant="h4">UI/UX</Typography>
-              {uxs.map((d, i) => <Attendee key={i} person={d} selected={d.name === persons[index].name}/>)}
+              {uxs.map((d, i) => <Attendee key={i} person={d} selected={d.name === attendees[index].name}/>)}
               <Typography variant="h4">PO</Typography>
-              {pos.map((d, i) => <Attendee key={i} person={d} selected={d.name === persons[index].name}/>)}
-             <Typography variant="h4">Other</Typography>
-             {other.map((d, i) => <Attendee key={i} person={d} selected={d.name === persons[index].name}/>)}
+              {pos.map((d, i) => <Attendee key={i} person={d} selected={d.name === attendees[index].name}/>)}
+             <Typography variant="h4">AC</Typography>
+             {acs.map((d, i) => <Attendee key={i} person={d} selected={d.name === attendees[index].name}/>)}
              <div style={{display: 'flex', justifyContent: 'center', marginTop: "5px"}}>
                   <Button variant="contained" onClick={increaseIndex}>Next</Button>
                   <Button style={{marginLeft: "10px"}} onClick={() => {
-                      const shuffledPersons = shufflePersons(persons)
-                      setPersons(shuffledPersons);
+                      const shuffledPersons = shufflePersons(attendees)
+                      setAttendees(shuffledPersons);
                       setIndex(0);
                   }}>Shuffle</Button>
               </div>
