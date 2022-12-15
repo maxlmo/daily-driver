@@ -19,12 +19,15 @@ export function DailyDriver() {
         if (!key.shiftKey) {
             return;
         }
-        if (key.key === "ArrowDown") {
+        if (key.code === "ArrowDown") {
             increaseIndex();
         }
-        if (key.key === "ArrowUp") {
+        if (key.code === "ArrowUp") {
             const newIndex = index <= 1 ? 0 : index - 1;
             setIndex(newIndex);
+        }
+        if (key.code === "Space"){
+            shuffle();
         }
     }
 
@@ -38,8 +41,14 @@ export function DailyDriver() {
 
     useEventListener("keydown", onKeyDown);
 
+    const shuffle = () => {
+        const shuffledPersons = shufflePersons(attendees)
+        setAttendees(shuffledPersons);
+        setIndex(0);
+    }
+
     return (
-         <Card elevation={10} sx={{px: 4, py: 2, bgcolor: '#fff'}}>
+        <Card elevation={10} sx={{px: 4, py: 2, bgcolor: '#fff'}}>
               <Typography variant="h4">Devs</Typography>
               {devs.map((d, i) => <Attendee key={i} person={d} selected={d.name === attendees[index].name}/>)}
               <Typography variant="h4">UI/UX</Typography>
@@ -50,11 +59,7 @@ export function DailyDriver() {
              {acs.map((d, i) => <Attendee key={i} person={d} selected={d.name === attendees[index].name}/>)}
              <div style={{display: 'flex', justifyContent: 'center', marginTop: "5px"}}>
                   <Button variant="contained" onClick={increaseIndex}>Next</Button>
-                  <Button style={{marginLeft: "10px"}} onClick={() => {
-                      const shuffledPersons = shufflePersons(attendees)
-                      setAttendees(shuffledPersons);
-                      setIndex(0);
-                  }}>Shuffle</Button>
+                  <Button style={{marginLeft: "10px"}} onClick={shuffle}>Shuffle</Button>
               </div>
          </Card>
     )
