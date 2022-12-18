@@ -1,5 +1,9 @@
 # Daily Driver
 
+## Google Web Store Listing
+
+* This extension can be found in [Google Web Store](https://chrome.google.com/webstore/detail/daily-driver/mhamhdaengbffbibjdlnlcfcghgcclnc)
+
 ## Setup
 
 * Install [node](https://nodejs.org/en/)
@@ -12,3 +16,10 @@
 
 Happy coding :)
 
+## Usage
+
+Productivity tool for remote scrum teams.
+This tool can be used on every website (e.g. jira/trello/github) to give your daily meetup a speaker order.
+Simply set your attendees, shuffle and start your meeting without hiccups.
+
+![Daily Driver](./doc/daily_driver.png)
